@@ -26,3 +26,25 @@ def pregunta_04():
      ('12', 3)]
 
     """
+
+    meses = {}
+
+    with open("files/input/data.csv", "r") as archivo:
+        for linea in archivo:
+            partes = linea.strip().split()   
+            fecha = partes[2]                
+
+            # Extraer el mes (posición 5 y 6)
+            mes = fecha[5:7]
+
+            
+            if mes not in meses:
+                meses[mes] = 1
+            else:
+                meses[mes] += 1
+
+    # Convertir a lista de tuplas
+    resultado = [(mes, cantidad) for mes, cantidad in meses.items()]
+    return sorted(resultado) 
+
+print(pregunta_04())

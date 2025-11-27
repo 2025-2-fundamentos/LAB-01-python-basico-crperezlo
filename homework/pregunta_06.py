@@ -26,3 +26,35 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+
+    claves = {}
+
+    with open("files/input/data.csv", "r") as f:
+        for linea in f:
+            partes = linea.strip().split()
+            
+
+            columna = partes[4]
+
+            #Separar cada par clave yvalor
+            pares = columna.split(",")
+
+            for par in pares:
+                
+                clave, valor_str = par.split(":")
+                valor = int(valor_str)
+
+                #Inicializar si no existe aún
+                if clave not in claves:
+                    claves[clave] = [valor, valor]
+
+                else:
+                    if valor < claves[clave][0]:
+                        claves[clave][0] = valor
+                    if valor > claves[clave][1]:
+                        claves[clave][1] = valor
+
+    resultado = [(clave, datos[0], datos[1]) for clave, datos in claves.items()]
+    return sorted(resultado)
+
+print(pregunta_06())

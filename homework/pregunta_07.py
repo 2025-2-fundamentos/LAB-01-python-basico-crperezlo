@@ -25,3 +25,24 @@ def pregunta_07():
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
     """
+    grupos = {}   
+
+    with open('files/input/data.csv', "r") as archivo:
+        for linea in archivo:
+            partes = linea.strip().split()
+
+            letra = partes[0]           
+            numero = partes[1]          
+            numero = int(numero)
+
+            #inicializar si no existe
+            if numero not in grupos:
+                grupos[numero] = [letra]
+            else:
+                grupos[numero].append(letra)
+
+
+    resultado = [(numero, letras) for numero, letras in grupos.items()]
+    return sorted(resultado)
+
+print(pregunta_07())

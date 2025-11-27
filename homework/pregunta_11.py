@@ -16,3 +16,25 @@ def pregunta_11():
 
 
     """
+    suma = {}  
+
+    with open('files/input/data.csv', "r") as archivo:
+        for linea in archivo:
+            partes = linea.strip().split()
+            
+            col2 = int(partes[1])  
+            col4 = partes[3]              
+
+            letras = col4.split(",")
+
+            for letra in letras:
+                if letra not in suma:
+                    suma[letra] = col2
+                else:
+                    suma[letra] += col2
+
+    suma_ordenada = {k: suma[k] for k in sorted(suma.keys())}
+
+    return suma_ordenada
+
+print(pregunta_11())

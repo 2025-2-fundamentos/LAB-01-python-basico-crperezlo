@@ -24,3 +24,30 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+    conteo = {} 
+
+    with open('files/input/data.csv', "r") as archivo:
+        for linea in archivo:
+            partes = linea.strip().split()
+            if len(partes) < 5:
+                continue
+
+            columna5 = partes[4] 
+            pares = columna5.split(",")
+
+            claves_vistas = set()
+
+            for par in pares:
+
+                clave = par.split(":")[0]
+
+                if clave not in claves_vistas:
+                    claves_vistas.add(clave)
+                    conteo[clave] = conteo.get(clave, 0) + 1
+
+    # Ordenar el diccionario alfabéticamente por clave
+    diccionario_ordenado = {k: conteo[k] for k in sorted(conteo.keys())}
+
+    return diccionario_ordenado
+
+print(pregunta_09())

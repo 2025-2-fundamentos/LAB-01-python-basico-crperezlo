@@ -20,3 +20,23 @@ def pregunta_10():
 
 
     """
+    resultado = []
+
+    with open('files/input/data.csv', "r") as archivo:
+        for linea in archivo:
+            partes = linea.strip().split()
+
+          
+            letra = partes[0]        
+            columna4 = partes[3]         
+            columna5 = partes[4]         
+
+            # Contar elementos de cada columna
+            elementos_col4 = len(columna4.split(","))
+            elementos_col5 = len(columna5.split(","))
+
+            resultado.append((letra, elementos_col4, elementos_col5))
+
+    return resultado
+
+print(pregunta_10())

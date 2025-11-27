@@ -27,3 +27,28 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+    grupos = {}   
+
+    with open('files/input/data.csv', "r") as archivo:
+        for linea in archivo:
+            partes = linea.strip().split()
+
+            letra = partes[0]           
+            numero = partes[1]          
+            numero = int(numero)
+
+            #inicializar si no existe
+            if numero not in grupos:
+                grupos[numero] = set([letra])
+            else:
+                grupos[numero].add(letra)
+            #Se usan sets para evitar que elementos se repetan
+
+    resultado = []
+    for numero, letras in grupos.items():
+        lista_ordenada = sorted(list(letras))
+        resultado.append((numero, lista_ordenada))
+
+    return sorted(resultado)
+
+print(pregunta_08())
