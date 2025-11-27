@@ -15,3 +15,24 @@ def pregunta_03():
     [('A', 53), ('B', 36), ('C', 27), ('D', 31), ('E', 67)]
 
     """
+
+    x = open("files/input/data.csv", "r").readlines()
+
+    x = [z.replace("\n", "") for z in x]
+    x = [z.split("\t") for z in x]
+
+    y = list(z[0] for z in x)
+
+    diccionario = {}
+
+    for i in range(len(y)):
+        if y[i] not in diccionario:
+            diccionario[y[i]] = 0
+        diccionario[y[i]] += int(x[i][1])
+
+    diccionario = list(diccionario.items())
+    diccionario.sort()
+
+
+    return(diccionario)
+
